@@ -40,13 +40,18 @@ class CocktailsController < ApplicationController
     end
   end
 
-  def destory
-    # @cocktail = cocktail.find(params[:id])
+  def destroy
+    @cocktail = Cocktail.find(params[:id])
     @cocktail.destroy
     # no need for app/views/cocktails/destroy.html.erb
     redirect_to cocktails_path
   end
   private
+
+  def has_doses?
+    @cocktail.dose_ids.last = nil
+    return '<%= link_to "Add Dose", new_cocktail_dose_path(@cocktail) , class: "btn card-link " %>'
+  end
 
   def cocktail_params
     params.require(:cocktail).permit(:name, :ingredient)

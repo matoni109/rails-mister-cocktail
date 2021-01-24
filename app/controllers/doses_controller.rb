@@ -1,9 +1,37 @@
 class DosesController < ApplicationController
   def new
     # we need @cocktail in our `simple_form_for`
+
     @cocktail = Cocktail.find(params[:cocktail_id])
     @dose = Dose.new
     # raise
+  end
+
+  def create
+    # @dose = Dose.new(dose_params)
+    #  "dose"=>{"description"=>"1oz", "ingredient_id"=>["1", "2"]},
+    # "commit"=>"Submit Dose",
+    #{}"cocktail_id"=>"1"}
+    # we need `restaurant_id` to associate dose with corresponding restaurant
+    @cocktail = Cocktail.find(params[:cocktail_id])
+    ing_ids = params[:dose][:ingredient_id]
+
+    ing_ids.each do |ing_id|
+      # @ing = Ingredient.find(ing_id)
+
+      @dose = Dose.new(
+        description: (params[:dose][:description]),
+        cocktail_id: (params[:cocktail_id]),
+        ingredient_id: ing_id
+      )
+      # @dose.cocktail = @cocktail
+      if @dose.valid?
+        @dose.save
+      else
+        render :new
+      end
+    end
+    redirect_to cocktail_path(@cocktail)
   end
 
   def show
@@ -12,17 +40,6 @@ class DosesController < ApplicationController
 
   end
 
-  def create
-    @dose = Dose.new(dose_params)
-    # we need `restaurant_id` to associate dose with corresponding restaurant
-    @cocktail = Cocktail.find(params[:cocktail_id])
-    @dose.cocktail = @cocktail
-    if  @dose.save
-      redirect_to cocktail_path(@cocktail)
-    else
-      render :new
-    end
-  end
 
   def destroy
     @dose = Dose.find(params[:id])

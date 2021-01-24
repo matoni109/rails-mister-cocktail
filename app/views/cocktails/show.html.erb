@@ -1,45 +1,52 @@
 <div class="map" style="height: 40vh; background-image: url('https://images.unsplash.com/photo-1494526585095-c41746248156?w=1200')"></div>
 <div class="container">
-  <div class="row">
-    <div class="col-8 margin-top-negative">
-      <div class="card py-3 my-3" style="width: 100%;">
-        <div class="card-body ">
-          <h2 class="card-title">
-            <%= @cocktail.name %>
-          </h2>
-          <h6 class="card-subtitle mb-2 text-muted">
-            <%= @cocktail.name %>
-          </h6>
+    <div class="row">
+        <div class="col-8 margin-top-negative">
+            <div class="card py-3 my-3" style="width: 100%;">
+                <div class="card-body ">
+                    <h2 class="card-title">
+                        <%= @cocktail.name %>
+                    </h2>
+                    <h6 class="card-subtitle mb-2 text-muted">
+                        <%= @cocktail.name %>
+                    </h6>
+                </div>
+            </div>
+            <div class="card" style="width: 100%;">
+                <div class="card-body">
+                    <h2 class="card-title">
+                        <%= @cocktail.name %> Info</h2>
+                    <h6 class="card-subtitle mb-2 text-muted"></h6>
+                    <p class="card-text">
+                        <h5>Ingredients</h5>
+                        <!-- @cocktail.doses[0].ingredient[:name] -->
+                        <% @cocktail.doses.each do |dose|%>
+                        <p>
+                            <%= dose.ingredient[:name] %>
+                            <%= dose.description %>
+                        </p>
+                        <% end %>
+                    </p>
+                    <%= link_to "Edit Name", edit_cocktail_path(@cocktail) , class: "btn card-link " %>
+                    <%= link_to "Remove Drink", cocktail_path(@cocktail),method: :delete, data: { confirm: "Are you sure?" }, class: "btn card-link" %>
+                    <% if @cocktail.dose_ids.last == nil %>
+                    <%= link_to "Add Dose", new_cocktail_dose_path(@cocktail) , class: "btn card-link " %>
+                    <% else %>
+                    <%= link_to "Remove Last Dose", dose_path(@cocktail.dose_ids.last),method: :delete, data: { confirm: "Are you sure?" }, class: "btn card-link" %>
+                    <%= link_to "Add Dose", new_cocktail_dose_path(@cocktail) , class: "btn card-link " %>
+                    <% end %>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="card" style="width: 100%;">
-        <div class="card-body">
-          <h2 class="card-title"><%= @cocktail.name %> Info</h2>
-          <h6 class="card-subtitle mb-2 text-muted"></h6>
-          <p class="card-text">
-            <h5>Ingredients</h5>
-            <!-- @cocktail.doses[0].ingredient[:name] -->
-            <% @cocktail.doses.each do |dose|%>
-              <p>
-                <%= dose.ingredient[:name] %> <%= dose.description %>
-              </p>
-            <% end %>
-          </p>
-          <%= link_to "Edit Name", edit_cocktail_path(@cocktail) , class: "btn card-link " %>
-          <%= link_to "Add Dose", new_cocktail_dose_path(@cocktail) , class: "btn card-link " %>
-          <%= link_to "Remove", cocktail_path(@cocktail),method: :delete, data: { confirm: "Are you sure?" }, class: "btn card-link" %>
+        <div class="col-4 margin-top-negative">
+            <div class="card py-3 my-3" style="width: 100%;">
+                <div class="card-body">
+                    <h2 class="card-title">Book </h2>
+                    <h6 class="card-subtitle mb-2 text-muted"></h6>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a href="#" class="card-link">Another link</a>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-    <div class="col-4 margin-top-negative">
-      <div class="card py-3 my-3" style="width: 100%;">
-        <div class="card-body">
-          <h2 class="card-title">Book </h2>
-          <h6 class="card-subtitle mb-2 text-muted"></h6>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a href="#" class="card-link">Another link</a>
-        </div>
-      </div>
-    </div>
-  </div>
 </div>

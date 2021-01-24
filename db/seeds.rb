@@ -25,8 +25,14 @@ puts "done cleaning "#
 
 # Name Me
 drinks.each do |drink|
+  url = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=#{drink.downcase}"
+  word_back = open(url).read
+  word = JSON.parse(word_back)
+  word["drinks"].first
   Cocktail.create!(
-    name: drink
+    name: drink,
+    image_scr: word["drinks"].first["strImageSource"]
+
   )
   puts "made #{Cocktail.last.name}"
 end
