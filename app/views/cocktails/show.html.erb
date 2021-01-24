@@ -20,21 +20,24 @@
                     <p class="card-text">
                         <h5>Ingredients</h5>
                         <!-- @cocktail.doses[0].ingredient[:name] -->
-                        <% @cocktail.doses.each do |dose|%>
-                        <p>
-                            <%= dose.ingredient[:name] %>
-                            <%= dose.description %>
-                        </p>
+                        <ul>
+                            <% @cocktail.doses.each do |dose|%>
+                            <li>
+                                <%= dose.ingredient[:name] %>
+                                <b>
+                                    <%= dose.description %></b>
+                                <%= link_to "Remove Dose", dose_path(dose),method: :delete, data: { confirm: "Are you sure?" }, class: "btn card-link" %>
+                            </li>
+                            <% end %>
+                        </ul>
+                        <%= link_to "Edit Name", edit_cocktail_path(@cocktail) , class: "btn card-link " %>
+                        <%= link_to "Remove Drink", cocktail_path(@cocktail),method: :delete, data: { confirm: "Are you sure?" }, class: "btn card-link" %>
+                        <% if @cocktail.dose_ids.last == nil %>
+                        <%= link_to "Add Dose", new_cocktail_dose_path(@cocktail) , class: "btn card-link " %>
+                        <% else %>
+                        <%= link_to "Remove Last Dose", dose_path(@cocktail.dose_ids.last),method: :delete, data: { confirm: "Are you sure?" }, class: "btn card-link" %>
+                        <%= link_to "Add Dose", new_cocktail_dose_path(@cocktail) , class: "btn card-link " %>
                         <% end %>
-                    </p>
-                    <%= link_to "Edit Name", edit_cocktail_path(@cocktail) , class: "btn card-link " %>
-                    <%= link_to "Remove Drink", cocktail_path(@cocktail),method: :delete, data: { confirm: "Are you sure?" }, class: "btn card-link" %>
-                    <% if @cocktail.dose_ids.last == nil %>
-                    <%= link_to "Add Dose", new_cocktail_dose_path(@cocktail) , class: "btn card-link " %>
-                    <% else %>
-                    <%= link_to "Remove Last Dose", dose_path(@cocktail.dose_ids.last),method: :delete, data: { confirm: "Are you sure?" }, class: "btn card-link" %>
-                    <%= link_to "Add Dose", new_cocktail_dose_path(@cocktail) , class: "btn card-link " %>
-                    <% end %>
                 </div>
             </div>
         </div>
