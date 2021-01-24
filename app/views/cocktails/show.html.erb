@@ -17,7 +17,13 @@
           <h2 class="card-title"><%= @cocktail.name %> Info</h2>
           <h6 class="card-subtitle mb-2 text-muted"></h6>
           <p class="card-text">
-            <%= @cocktail.name %>
+            <h5>Ingredients</h5>
+            <!-- @cocktail.doses[0].ingredient[:name] -->
+            <% @cocktail.doses.each do |dose|%>
+              <p>
+                <%= dose.ingredient[:name] %> <%= dose.description %>
+              </p>
+            <% end %>
           </p>
           <%= link_to "Edit Name", edit_cocktail_path(@cocktail) , class: "btn card-link " %>
           <%= link_to "Add Dose", new_cocktail_dose_path(@cocktail) , class: "btn card-link " %>
