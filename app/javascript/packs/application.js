@@ -3,11 +3,10 @@
 // a relevant structure within app/javascript and only use these pack files to reference
 // that code so it'll be compiled.
 import 'bootstrap';
-require("@rails/ujs").start()
-require("turbolinks").start()
-require("@rails/activestorage").start()
+import Rails from "@rails/ujs"
+import Turbolinks from "turbolinks"
+import * as ActiveStorage from "@rails/activestorage"
 require("channels")
-
 
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)
@@ -15,7 +14,17 @@ require("channels")
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
-document.addEventListener('turbolinks:load', () => {
-  // Call your JS functions here
-  // initUpdateNavbarOnScroll();
-});
+import 'select2/dist/css/select2.css';
+
+import { multipleSelect } from '../components/init_select2'
+
+Rails.start()
+Turbolinks.start()
+ActiveStorage.start()
+
+document.addEventListener("turbolinks:load", function () {
+  multipleSelect();
+})
+
+require("trix")
+require("@rails/actiontext")

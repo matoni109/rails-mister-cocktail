@@ -31,7 +31,8 @@ drinks.each do |drink|
   word["drinks"].first
   Cocktail.create!(
     name: drink,
-    image_scr: word["drinks"].first["strDrinkThumb"]
+    image_scr: word["drinks"].first["strDrinkThumb"],
+    description: word["drinks"].first["strInstructions"]
 
   )
   puts "made #{Cocktail.last.name}"
