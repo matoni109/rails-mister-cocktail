@@ -13,33 +13,36 @@ class DosesController < ApplicationController
     # "commit"=>"Submit Dose",
     #{}"cocktail_id"=>"1"}
     # we need `restaurant_id` to associate dose with corresponding restaurant
+
     @cocktail = Cocktail.find(params[:cocktail_id])
     ing_ids = params[:dose][:ingredient_id]
 
-    ing_ids.each do |ing_id|
-      # @ing = Ingredient.find(ing_id)
-
-      @dose = Dose.new(
-        description: (params[:dose][:description]),
-        cocktail_id: (params[:cocktail_id]),
-        ingredient_id: ing_id
-      )
-      # @dose.cocktail = @cocktail
-      if @dose.valid?
-        @dose.save
-      else
-        render :new
+    #array empty or desc empty ?
+    if ing_ids.nil? || params[:dose][:description].empty?
+      redirect_to new_cocktail_dose_path(@cocktail)
+    else
+      ing_ids.each do |ing_id|
+        # @ing = Ingredient.find(ing_id)
+        @dose = Dose.new(
+          description: (params[:dose][:description]),
+          cocktail_id: (params[:cocktail_id]),
+          ingredient_id: ing_id
+        )
+        # @dose.cocktail = @cocktail
+        if @dose.valid?
+          @dose.save
+        else
+          render :new
+        end
       end
+      redirect_to cocktail_path(@cocktail)
     end
-    redirect_to cocktail_path(@cocktail)
   end
 
   def show
     @cocktail = Cocktail.find(params[:id])
     @dose = Dose.where(cocktail_id: params[:id])
-
   end
-
 
   def destroy
     @dose = Dose.find(params[:id])

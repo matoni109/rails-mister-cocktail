@@ -1,10 +1,9 @@
 <div class="container py-3">
-  <h1>Add a Dose to <b>
-      <%= @cocktail.name %></b> </h1>
-  <%= simple_form_for [ @cocktail, @dose ] do |f| %>
+    <h1>Add a Dose to <b>
+            <%= @cocktail.name %></b> </h1>
+    <%= simple_form_for [ @cocktail, @dose ] do |f| %>
     <%= f.input :description %>
     <%= f.association :ingredient, input_html: { multiple: true, class: "multiple-select" }, include_hidden: false %>
-    <%= f.input :photo, as: :file %>
     <%= f.submit "Submit Dose", class: "btn btn-primary" %>
-  <% end %>
+    <% end %>
 </div>
