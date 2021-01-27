@@ -2,10 +2,9 @@
     <h1>Add a New Drink</h1>
     <%= simple_form_for [ @cocktail ] do |f| %>
     <%= f.input :name %>
-    <%= f.input :image_scr %>
-    <div class="form-inputs">
-        <%= f.rich_text_area :rich_body %>
-    </div>
-    <%= f.submit "Submit Drink", class: "btn btn-primary my-3" %>
-    <% end %>
+    <!--  <%= f.input :image_scr %> -->
+    <%= f.input :photo, as: :file %>
+    <%= f.input :description %>
+    <%= f.submit "Submit Drink", class: "btn btn-primary" %>
+  <% end %>
 </div>
