@@ -1,7 +1,7 @@
 <div class="container mx-auto py-3">
     <div class="row mx-auto justify-content-around py-5">
         <% @cocktails.each do |cocktail| %>
-        <div class="col-4 py-1">
+        <div class="col-lg-4 col-md-6 col-sm-12 py-1">
             <div class="card" style="width: 100%;">
                 <% cocktail.photo.attached? ? @image = "//res.cloudinary.com/matoni109/image/upload/#{cocktail.photo.key}": @image = cocktail.image_scr %>
                 <img class="card-i.namg-top" src="<%= @image %>" alt="Card image cap">
