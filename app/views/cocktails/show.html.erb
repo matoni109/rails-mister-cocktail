@@ -1,5 +1,5 @@
 <% @cocktail.photo.attached? ? @image = "//res.cloudinary.com/matoni109/image/upload/#{@cocktail.photo.key}": @image = @cocktail.image_scr %>
-<div class="background" style="height: 50vh; background-image: url('<%= @image %>')"></div>
+<div class="background my-2" style="height: 50vh; background-image: url('<%= @image %>')"></div>
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-sm-12 margin-top-negative">
