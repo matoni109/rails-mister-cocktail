@@ -16,6 +16,7 @@ import * as ActiveStorage from "@rails/activestorage"
 import 'select2/dist/css/select2.css';
 
 import { multipleSelect } from '../components/init_select2'
+import { flipdown } from '../components/init_flipdown'
 
 Rails.start()
 Turbolinks.start()
