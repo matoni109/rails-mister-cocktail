@@ -24,6 +24,7 @@ ActiveStorage.start()
 
 document.addEventListener("turbolinks:load", function() {
     multipleSelect();
+    flipdown();
 })
 
 require("trix")
