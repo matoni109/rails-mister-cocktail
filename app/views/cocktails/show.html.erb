@@ -1,4 +1,8 @@
+  <%= @cocktail.photo.attached? ? cl_image_tag(@cocktail.photo.key) : image_tag("https://via.placeholder.com/250x250") %>
 <div class="map" style="height: 40vh; background-image: url('<%= @cocktail.image_scr %>')"></div>
+<div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path @cocktail.photo.key, crop: :fill %>')">
+  Cool article
+</div>
 <div class="container">
   <div class="row">
     <div class="col-8 margin-top-negative">
@@ -13,7 +17,7 @@
         </div>
       </div>
       <div class="card" style="width: 100%;">
-        <div class="card-body">
+        <div class="card-body">@coc
           <h2 class="card-title">
             <%= @cocktail.name %> Info</h2>
           <h6 class="card-subtitle mb-2 text-muted"></h6>
