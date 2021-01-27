@@ -3,7 +3,8 @@
         <% @cocktails.each do |cocktail| %>
         <div class="col-4 py-1">
             <div class="card" style="width: 100%;">
-                <img class="card-i.namg-top" src="<%= cocktail.image_scr %>" alt="Card image cap">
+                <% cocktail.photo.attached? ? @image = "//res.cloudinary.com/matoni109/image/upload/#{cocktail.photo.key}": @image = cocktail.image_scr %>
+                <img class="card-i.namg-top" src="<%= @image %>" alt="Card image cap">
                 <div class="card-body">
                     <h5 class="card-title">
                         <%= cocktail.name %>

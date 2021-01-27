@@ -1,58 +1,58 @@
-  <%= @cocktail.photo.attached? ? cl_image_tag(@cocktail.photo.key) : image_tag("https://via.placeholder.com/250x250") %>
-<div class="map" style="height: 40vh; background-image: url('<%= @cocktail.image_scr %>')"></div>
-<div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path @cocktail.photo.key, crop: :fill %>')">
-  Cool article
-</div>
+<% @cocktail.photo.attached? ? @image = "//res.cloudinary.com/matoni109/image/upload/#{@cocktail.photo.key}": @image = @cocktail.image_scr %>
+<div class="map" style="height: 40vh; background-image: url('<%= @image %>')"></div>
 <div class="container">
-  <div class="row">
-    <div class="col-8 margin-top-negative">
-      <div class="card py-3 my-3" style="width: 100%;">
-        <div class="card-body ">
-          <h2 class="card-title">
-            <%= @cocktail.name %>
-          </h2>
-          <h6 class="card-subtitle mb-2 text-muted">
-            <%= @cocktail.name %>
-          </h6>
+    <div class="row">
+        <div class="col-8 margin-top-negative">
+            <div class="card py-3 my-3" style="width: 100%;">
+                <div class="card-body ">
+                    <h2 class="card-title">
+                        <%= @cocktail.name %>
+                    </h2>
+                    <h6 class="card-subtitle mb-2 text-muted">
+                        <%= @cocktail.name %>
+                    </h6>
+                </div>
+            </div>
+            <div class="card" style="width: 100%;">
+                <div class="card-body">@coc
+                    <h2 class="card-title">
+                        <%= @cocktail.name %> Info</h2>
+                    <h6 class="card-subtitle mb-2 text-muted"></h6>
+                    <p class="card-text">
+                        <h5>Ingredients</h5>
+                        <!-- @cocktail.doses[0].ingredient[:name] -->
+                        <ul>
+                            <% @cocktail.doses.each do |dose|%>
+                            <li>
+                                <%= dose.ingredient[:name] %>
+                                <b>
+                                    <%= dose.description %></b>
+                                <%= link_to "Remove Dose", dose_path(dose),method: :delete, data: { confirm: "Are you sure?" }, class: "btn card-link" %>
+                            </li>
+                            <% end %>
+                        </ul>
+                        <%= link_to "Edit Name", edit_cocktail_path(@cocktail) , class: "btn card-link " %>
+                        <%= link_to "Remove Drink", cocktail_path(@cocktail),method: :delete, data: { confirm: "Are you sure?" }, class: "btn card-link" %>
+                        <% if @cocktail.dose_ids.last == nil %>
+                        <%= link_to "Add Dose", new_cocktail_dose_path(@cocktail) , class: "btn card-link " %>
+                        <% else %>
+                        <%= link_to "Remove Last Dose", dose_path(@cocktail.dose_ids.last),method: :delete, data: { confirm: "Are you sure?" }, class: "btn card-link" %>
+                        <%= link_to "Add Dose", new_cocktail_dose_path(@cocktail) , class: "btn card-link " %>
+                        <% end %>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="card" style="width: 100%;">
-        <div class="card-body">@coc
-          <h2 class="card-title">
-            <%= @cocktail.name %> Info</h2>
-          <h6 class="card-subtitle mb-2 text-muted"></h6>
-          <p class="card-text">
-            <h5>Ingredients</h5>
-            <!-- @cocktail.doses[0].ingredient[:name] -->
-            <ul>
-              <% @cocktail.doses.each do |dose|%>
-                <li>
-                  <%= dose.ingredient[:name] %>
-                  <b>
-                    <%= dose.description %></b>
-                  <%= link_to "Remove Dose", dose_path(dose),method: :delete, data: { confirm: "Are you sure?" }, class: "btn card-link" %>
-                </li>
-              <% end %>
-            </ul>
-            <%= link_to "Edit Name", edit_cocktail_path(@cocktail) , class: "btn card-link " %>
-            <%= link_to "Remove Drink", cocktail_path(@cocktail),method: :delete, data: { confirm: "Are you sure?" }, class: "btn card-link" %>
-            <% if @cocktail.dose_ids.last == nil %>
-              <%= link_to "Add Dose", new_cocktail_dose_path(@cocktail) , class: "btn card-link " %>
-            <% else %>
-              <%= link_to "Remove Last Dose", dose_path(@cocktail.dose_ids.last),method: :delete, data: { confirm: "Are you sure?" }, class: "btn card-link" %>
-              <%= link_to "Add Dose", new_cocktail_dose_path(@cocktail) , class: "btn card-link " %>
-            <% end %>
-          </div>
+        <div class="col-4 margin-top-negative">
+            <div class="card py-3 my-3" style="width: 100%;">
+                <div class="card-body">
+                    <h2 class="card-title">
+                        <%= @cocktail.name %> Method</h2>
+                    <h6 class="card-subtitle mb-2 text-muted"></h6>
+                    <p class="card-text">
+                        <%= @cocktail.description %>
+                    </p>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="col-4 margin-top-negative">
-        <div class="card py-3 my-3" style="width: 100%;">
-          <div class="card-body">
-            <h2 class="card-title"><%= @cocktail.name %> Method</h2>
-            <h6 class="card-subtitle mb-2 text-muted"></h6>
-            <p class="card-text"><%= @cocktail.description %></p>
-          </div>
-        </div>
-      </div>
     </div>
-  </div>
+</div>
