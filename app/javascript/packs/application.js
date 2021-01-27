@@ -6,7 +6,7 @@ import 'bootstrap';
 import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 require("channels")
-
+import * as ActiveStorage from "@rails/activestorage"
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)
 // or the `imagePath` JavaScript helper below.
@@ -21,8 +21,8 @@ Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
-document.addEventListener("turbolinks:load", function () {
-  multipleSelect();
+document.addEventListener("turbolinks:load", function() {
+    multipleSelect();
 })
 
 require("trix")

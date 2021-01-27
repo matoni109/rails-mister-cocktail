@@ -4,7 +4,7 @@
     <%= f.input :name %>
     <!--  <%= f.input :image_scr %> -->
     <%= f.input :photo, as: :file %>
-    <%= f.input :description %>
+    <%= f.rich_text_area :rich_body %>
     <%= f.submit "Submit Drink", class: "btn btn-primary" %>
-  <% end %>
+    <% end %>
 </div>
