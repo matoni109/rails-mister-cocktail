@@ -1,13 +1,14 @@
 class DosesController < ApplicationController
-  def new
-    # we need @cocktail in our `simple_form_for`
+  # def new
+  #   # we need @cocktail in our `simple_form_for`
 
-    @cocktail = Cocktail.find(params[:cocktail_id])
-    @dose = Dose.new
-    # raise
-  end
+  #   @cocktail = Cocktail.find(params[:cocktail_id])
+  #   @dose = Dose.new
+  #   # raise
+  # end
 
   def create
+
     # @dose = Dose.new(dose_params)
     #  "dose"=>{"description"=>"1oz", "ingredient_id"=>["1", "2"]},
     # "commit"=>"Submit Dose",

@@ -1,26 +1,27 @@
-<div id="top" class="container">
-    <h1 class="text-center py-5">Get Drunk In</h1>
+<!-- <div id="top" class="container">
+    <h1 id="top" class="text-center py-5">Get Drunk In</h1>
     <div id="flipdown" class="flipdown mx-auto"></div>
-</div>
-<div id="main" class="container mx-auto py-3" style="display: none;">
-    <div class="row mx-auto justify-content-around py-5">
-        <% @cocktails.each do |cocktail| %>
-        <div class="col-lg-4 col-md-6 col-sm-12 py-1">
-            <div class="card" style="width: 100%;">
-                <% cocktail.photo.attached? ? @image = "//res.cloudinary.com/matoni109/image/upload/#{cocktail.photo.key}": @image = cocktail.image_scr %>
-                <img class="card-i.namg-top" src="<%= @image %>" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">
-                        <%= cocktail.name %>
-                    </h5>
-                    <p class="card-text">
-                        <i class="fas fa-dollar-sign"></i>
-                        <%= cocktail.id %>
-                    </p>
-                    <%= link_to "More Info", cocktail_path(cocktail) , class: "btn btn-link" %>
-                </div>
-            </div>
+</div> -->
+<div id="main" class="container mx-auto py-3">
+  <!-- style="display: none;" -->
+  <div class="row mx-auto justify-content-around py-5">
+    <% @cocktails.each do |cocktail| %>
+      <div class="col-lg-4 col-md-6 col-sm-12 py-1">
+        <div class="card" style="width: 100%;">
+          <% cocktail.photo.attached? ? @image = "//res.cloudinary.com/matoni109/image/upload/#{cocktail.photo.key}": @image = cocktail.image_scr %>
+          <img class="card-i.namg-top" src="<%= @image %>" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">
+              <%= cocktail.name %>
+            </h5>
+            <p class="card-text">
+              <i class="fas fa-dollar-sign"></i>
+              <%= cocktail.id %>
+            </p>
+            <%= link_to "More Info", cocktail_path(cocktail) , class: "btn btn-link" %>
+          </div>
         </div>
-        <% end %>
-    </div>
+      </div>
+    <% end %>
+  </div>
 </div>

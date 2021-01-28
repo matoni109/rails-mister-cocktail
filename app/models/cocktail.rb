@@ -8,4 +8,15 @@ class Cocktail < ApplicationRecord
   validates :name, presence: true, uniqueness: true
 
   has_one_attached :photo
+
+  accepts_nested_attributes_for :ingredients, :doses
+
+
+  # def dose_description=(description)
+  #   @dose.description = description
+  # end
+
+  # def dose_description
+  #   @dose.description
+  # end
 end

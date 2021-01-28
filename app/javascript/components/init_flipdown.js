@@ -16,7 +16,7 @@ const flipdown = document.addEventListener('DOMContentLoaded', () => {
         .ifEnded(() => {
             console.log(main);
 
-            main.removeAttribute("style");
+            // main.removeAttribute("style");
             top.setAttribute("style", "display: none;");
         });
 

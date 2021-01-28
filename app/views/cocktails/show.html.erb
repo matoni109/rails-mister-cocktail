@@ -33,11 +33,26 @@
                         </ul>
                         <%= link_to "Edit Name", edit_cocktail_path(@cocktail) , class: "btn card-link " %>
                         <%= link_to "Remove Drink", cocktail_path(@cocktail),method: :delete, data: { confirm: "Are you sure?" }, class: "btn card-link" %>
-                        <% if @cocktail.dose_ids.last == nil %>
-                        <%= link_to "Add Dose", new_cocktail_dose_path(@cocktail) , class: "btn card-link " %>
-                        <% else %>
+                        <!--   <% if @cocktail.dose_ids.last == nil %>
+                        <%#= link_to "Add Dose", new_cocktail_dose_path(@cocktail) , class: "btn card-link " %>
+                        <% else %> -->
                         <%= link_to "Remove Last Dose", dose_path(@cocktail.dose_ids.last),method: :delete, data: { confirm: "Are you sure?" }, class: "btn card-link" %>
-                        <%= link_to "Add Dose", new_cocktail_dose_path(@cocktail) , class: "btn card-link " %>
+                        <!--   <%#= link_to "Add Dose", new_cocktail_dose_path(@cocktail) , class: "btn card-link " %>
+                        <% end %> -->
+                </div>
+            </div>
+            <div class="card my-5" style="width: 100%;">
+                <div class="card-body">
+                    <h2 class="card-title">
+                        <%= @cocktail.name %> Info</h2>
+                    <h6 class="card-subtitle mb-2 text-muted"></h6>
+                    <p class="card-text">
+                        <h1>Add a Dose to <b>
+                                <%= @cocktail.name %></b> </h1>
+                        <%= simple_form_for [ @cocktail, @dose] do |f| %>
+                        <%= f.input :description %>
+                        <%= f.association :ingredient, input_html: { multiple: true, class: "multiple-select" }, include_hidden: false %>
+                        <%= f.submit "Submit Dose", class: "btn btn-primary" %>
                         <% end %>
                 </div>
             </div>
